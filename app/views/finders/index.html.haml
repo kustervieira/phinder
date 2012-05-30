@@ -1,0 +1,19 @@
+%h1 Listing finders
+
+%table
+  %tr
+    %th Gender
+    %th
+    %th
+    %th
+
+  - @finders.each do |finder|
+    %tr
+      %td= finder.gender
+      %td= link_to 'Show', finder
+      %td= link_to 'Edit', edit_finder_path(finder)
+      %td= link_to 'Destroy', finder, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Finder', new_finder_path

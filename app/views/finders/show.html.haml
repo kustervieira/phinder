@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Gender:
+  = @finder.gender
+
+= link_to 'Edit', edit_finder_path(@finder)
+\|
+= link_to 'Back', finders_path
