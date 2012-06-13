@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+     <title>Facebook test</title>
+     <script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>
+     <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+     <script type="text/javascript">
+        $(document).ready(function() {
+        FB.init({ appId: '191621660964479', status: true, cookie: true, xfbml: true });
+        FB.Event.subscribe('auth.login', function (response) {
+            window.location.reload();
+        });        
+        //https://graph.facebook.com/oauth/access_token?client_id=191621660964479&client_secret=a97b161f1da745c0aea7b50148e127e3&grant_type=client_credentials
+        //?access_token=191621660964479|sQ5IM5GL_RzGnNrJg6nrMvhAuFA
+        // Handler for .ready() called.
+        
+            FB.getLoginStatus(function(response) {
+              if (response.status === 'connected') {
+                // the user is logged in and has authenticated your
+                // app, and response.authResponse supplies
+                // the user's ID, a valid access token, a signed
+                // request, and the time the access token 
+                // and signed request each expire
+                var uid = response.authResponse.userID;
+                var accessToken = response.authResponse.accessToken;
+                
+                     console.log('Welcome!  Fetching your information.... ');
+                     FB.api('/me', function(response) {
+                       console.log('Good to see you, ' + response.name + '.');
+                       alert('Good to see you, ' + response.name + '.');
+                     });
+                              
+              } else if (response.status === 'not_authorized') {
+                // the user is logged in to Facebook, 
+                // but has not authenticated your app
+              } else {
+                // the user isn't logged in to Facebook.
+                FB.login(function(response) {
+                   
+                 });                
+              }
+             });        
+           
+           
+            $("#button").click(function() {
+                //alert("Handler for .click() called.");
+                var accessToken;
+                FB.getLoginStatus(function(response) {
+                        accessToken = response.authResponse.accessToken;
+                     });                        
+                     alert(accessToken);
+                $.ajax({
+                   url: 'https://graph.facebook.com/fql?q=SELECT uid FROM user WHERE sex="male" AND uid IN (SELECT uid2 FROM friend WHERE uid1 = me())&access_token=' + accessToken,
+                   async: true,
+                   type: "GET",
+                   dataType: "jsonp",
+                   error: function(jqXHR, textStatus, errorThrown){
+                            alert("Error!");
+                   },
+                   complete: function(jqXHR, textStatus){
+                   },
+                    statusCode: {
+                        200: function(data, textStatus, jqXHR) {
+                            alert(data);
+                        }
+                      }                  
+                });
+            });           
+        });
+    </script>
+ </head>
+ <body>
+ <fb:login-button perms="read_stream,publish_stream">
+  Grant Permissions to make more examples work
+</fb:login-button>
+
+<a href="#" id="button" >FQL</a>
+ </body>
+</html>
