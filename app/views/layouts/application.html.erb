@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head id="Head1" runat="server">
+    <title>Phinder Facebook Profile
+</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <%= stylesheet_link_tag 'application'%>
+    <%= javascript_include_tag 'application'%>
+    <%= csrf_meta_tags %>
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="Form1" runat="server">
+    <div class="page">
+        <div class="header">
+            <div class="title">
+                <h1>
+                    Phinder Facebook Profile
+                </h1>
+            </div>
+            <div class="loginDisplay">
+                <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
+                    <AnonymousTemplate>
+                        Welcome, <fb:name uid="loggedinuser" firstnameonly="true" use_you="no"></fb:name>
+                        <fb:profile-pic uid="loggedinuser" size="square" facebook-logo="true"></fb:profile-pic><br />
+                        <div id="fb-root"></div>
+                        <fb:login-button autologoutlink="true" ></fb:login-button>
+                    </AnonymousTemplate>                    
+                </asp:LoginView>
+            </div>
+            <div class="clear hideSkiplink">
+                <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                    <Items>
+                        <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Home"/>
+                        <asp:MenuItem NavigateUrl="~/About.aspx" Text="About"/>
+                    </Items>
+                </asp:Menu>
+            </div>
+        </div>
+        <div class="main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+            <%= yield %>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="footer">
+        
+    </div>
+    </form>
+</body>
+
+
+<script type="text/javascript" src="https://connect.facebook.net/en_US/all.js"></script>
+<script type="text/javascript">
+    FB.init({ appId: '380411611996628', status: true, cookie: true, xfbml: true });
+    FB.Event.subscribe('auth.login', function (response) {
+        window.location.reload();
+    });
+</script>
+</html>
+
