@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 Phinder::Application.configure do
+=======
+Find::Application.configure do
+>>>>>>> d9123e31efe4f5130a56653357f81a2d6c9c2b32
   # Settings specified here will take precedence over those in config/application.rb
 
   # The test environment is used exclusively to run your application's

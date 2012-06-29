@@ -13,8 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+<<<<<<< HEAD
 
 FB.init({ appId: '380411611996628', status: true, cookie: true, xfbml: true });
     FB.Event.subscribe('auth.login', function (response) {
         window.location.reload();
     });
+=======
+>>>>>>> d9123e31efe4f5130a56653357f81a2d6c9c2b32

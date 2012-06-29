@@ -9,7 +9,11 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
+<<<<<<< HEAD
 module Phinder
+=======
+module Find
+>>>>>>> d9123e31efe4f5130a56653357f81a2d6c9c2b32
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -39,9 +43,12 @@ module Phinder
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
 
+<<<<<<< HEAD
     # Enable escaping HTML in JSON.
     config.active_support.escape_html_entities_in_json = true
 
+=======
+>>>>>>> d9123e31efe4f5130a56653357f81a2d6c9c2b32
     # Use SQL instead of Active Record's schema dumper when creating the database.
     # This is necessary if your schema can't be completely dumped by the schema dumper,
     # like if you have constraints or database-specific column types
