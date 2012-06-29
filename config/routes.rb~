@@ -1,12 +1,13 @@
 Phinder::Application.routes.draw do
-  get "home/index"
+#  get "home/index"
+resources :phinder
+root to: 'home#index'
 
 match 'auth/:provider/callback', to: 'sessions#create'
 match 'auth/failure', to: redirect('/')
 match 'signout', to: 'sessions#destroy', as: 'signout'
 
-resources :phinder
-root to: 'phinders#index'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

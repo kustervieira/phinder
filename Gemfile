@@ -38,5 +38,6 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 gem 'omniauth-facebook'
-
+gem 'omniauth'
+gem 'koala'
 gem 'simple_form'
