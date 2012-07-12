@@ -61,7 +61,6 @@ jQuery(function($) {
 	        alert("Error!");
 	      },
 	      complete: function(jqXHR, textStatus){
-	      	console.log("Vai Corinthians!!!");
 	      },
 	      statusCode: {
 	        200: function(data, textStatus, jqXHR) {
