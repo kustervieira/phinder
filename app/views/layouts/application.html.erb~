@@ -1,11 +1,13 @@
+<<<<<<< HEAD
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head id="Head1" runat="server">
     <title>Phinder Facebook Profile</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+      <script type="text/javascript" src="https://connect.facebook.net/en_US/all.js"></script>
+
     <%= stylesheet_link_tag 'application'%>
     <%= javascript_include_tag 'application'%>
-    <%= csrf_meta_tags %>
     <ContentPlaceHolder ID="HeadContent" runat="server">
     </ContentPlaceHolder>
 </head>
@@ -20,12 +22,11 @@
             </div>
             <div class="loginDisplay">
                 <LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
-                    <AnonymousTemplate>
-			<% if current_user %>
-				Signed in as <%= current_user.name %>!
-			<% else %>
-				<%= link_to "sign in with facebook", "/auth/facebook" %>
-			<% end %>			
+                    <AnonymousTemplate>		
+			Welcome, <fb:name uid="loggedinuser" firstnameonly="true" use_you="no"></fb:name>
+                        <fb:profile-pic uid="loggedinuser" size="square" facebook-logo="true"></fb:profile-pic><br />
+                        <div id="fb-root"></div>
+                        <fb:login-button autologoutlink="true" ></fb:login-button>		
                     </AnonymousTemplate>                    
                 </LoginView>
             </div>
@@ -44,3 +45,19 @@
 </body>
 </html>
 
+=======
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Find</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= yield %>
+
+</body>
+</html>
+>>>>>>> d9123e31efe4f5130a56653357f81a2d6c9c2b32

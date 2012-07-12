@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 Phinder::Application.configure do
-=======
-Find::Application.configure do
->>>>>>> d9123e31efe4f5130a56653357f81a2d6c9c2b32
+
   # Settings specified here will take precedence over those in config/application.rb
 
   # Code is not reloaded between requests
@@ -24,11 +21,8 @@ Find::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
-<<<<<<< HEAD
+
   # Defaults to nil and saved in location specified by config.assets.prefix
-=======
-  # Defaults to Rails.root.join("public/assets")
->>>>>>> d9123e31efe4f5130a56653357f81a2d6c9c2b32
   # config.assets.manifest = YOUR_PATH
 
   # Specifies the header that your server uses for sending files
@@ -71,9 +65,5 @@ Find::Application.configure do
 
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
-<<<<<<< HEAD
   # config.active_record.auto_explain_threshold_in_seconds = 0.5 
-=======
-  # config.active_record.auto_explain_threshold_in_seconds = 0.5
->>>>>>> d9123e31efe4f5130a56653357f81a2d6c9c2b32
 end

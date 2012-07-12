@@ -1,40 +1,15 @@
-<script type="text/javascript">
-$("button").click(function() {
-                //alert("Handler for .click() called.");
-                var accessToken;
-                FB.getLoginStatus(function(response) {
-                        accessToken = response.authResponse.accessToken;
-                     });                        
-                     alert(accessToken);
-                $.ajax({
-                   url: 'https://graph.facebook.com/fql?q=SELECT uid FROM user WHERE sex="male" AND uid IN (SELECT uid2 FROM friend WHERE uid1 = me())&access_token=' + accessToken,
-                   async: true,
-                   type: "GET",
-                   dataType: "jsonp",
-                   error: function(jqXHR, textStatus, errorThrown){
-                            alert("Error!");
-                   },
-                   complete: function(jqXHR, textStatus){
-                   },
-                    statusCode: {
-                        200: function(data, textStatus, jqXHR) {
-                            alert(data);
-                        }
-                      }                  
-                });
-            });           
-        });
-</script> 
+
 <h1>Welcome to Phinder Web Application!</h1>
 
 <h2>If you wish discover who is person at photo?</h2>
 
-<form id="gender_photo_form" action="" enctype="multipart/form-data">
+<form id="form" action="" enctype="multipart/form-data">
     <h3>Just select gender of person and upload file(s) to the app.</h3> <br />
-    <input id="male" type="radio" name="gender" value="male" /> Male <br />
-    <input id="female" type="radio" name="gender" value="female" /> Female <br /><br />
-    <input type="file" id="upload_photos" name="uphotos"/> <br /><br />
-    <input type="button" name="SubmitButton" value="Submit" onClick ="" /><br />
+    <fieldset>
+    <input id="male" name="gender" type="radio" value="male" checked="true"  /> Male <br />
+    <input id="female" name="gender" type="radio" value="female" /> Female <br /><br />
+    </fieldset>
+    <input type="file" id="upload" /> <br /><br />
+    <input type="button" id= "bSubmit" value="Submit"/><br />
 </form>
-
 <h2>This app will at your friends list search whose person is more similar with person at picture.</h2>

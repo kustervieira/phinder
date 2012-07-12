@@ -15,9 +15,11 @@
 //= require_tree .
 
 FB.init({ appId: '380411611996628', status: true, cookie: true, xfbml: true });
-    
+    FB.Event.subscribe('auth.login', function (response) {
+        window.location.reload();
+    });
+ /*   
  FB.getLoginStatus(function(response) {
- 	console.log(response.status); 
   if (response.status === 'connected') {
     // the user is logged in and has authenticated your
     // app, and response.authResponse supplies
@@ -29,48 +31,42 @@ FB.init({ appId: '380411611996628', status: true, cookie: true, xfbml: true });
   } else if (response.status === 'not_authorized') {
     // the user is logged in to Facebook, 
     // but has not authenticated your app
-    var oauth_url = 'https://graph.facebook.com/oauth/access_token?';
-    oauth_url += '?client_id=380411611996628';
-    oauth_url += '&redirect_uri=' + encodeURIComponent('http://localhost:3000/');
-    //oauth_url += '&scope=read_friendlists'
-	window.top.location = oauth_url; 
-
   } else {
     // the user isn't logged in to Facebook.
     FB.login(function(response) {
        
      });                
   }
- }); 
+ });*/ 
 
 
 jQuery(function($) {
   $("#bSubmit").click(function() {
   //alert("Handler for .click() called.");
+    
     var accessToken;
     FB.getLoginStatus(function(response) {
       accessToken = response.authResponse.accessToken;
-      var gender = $("input:radio[name=gender]")[0].checked ? "male" : "female";
-      console.log(gender);
-      $.ajax({
-	      url: "https://graph.facebook.com/fql?q=SELECT pic FROM user WHERE sex='" + gender + "'AND uid IN (SELECT uid2 FROM friend WHERE uid1 = me())&access_token=" + accessToken,
-	      async: true,
-	      type: "GET",
-	      dataType: "jsonp",
-	      error: function(jqXHR, textStatus, errorThrown){
-	        alert("Error!");
-	      },
-	      complete: function(jqXHR, textStatus){
-	      	console.log("Vai Corinthians!!!");
-	      },
-	      statusCode: {
-	        200: function(data, textStatus, jqXHR) {
-	          console.log(data);
-	          
-	        }
-	      }                  
-	    });
-   });                        
- 
+    });                        
+  
+    alert(accessToken);
+  
+    $.ajax({
+      url: 'https://graph.facebook.com/fql?q=SELECT uid FROM user WHERE sex="male" AND uid IN (SELECT uid2 FROM friend WHERE uid1 = me())&access_token=' + accessToken,
+      async: true,
+      type: "GET",
+      dataType: "jsonp",
+      error: function(jqXHR, textStatus, errorThrown){
+        alert("Error!");
+      },
+      complete: function(jqXHR, textStatus){
+      	//alert("helloworld complete!");
+      },
+      statusCode: {
+        200: function(data, textStatus, jqXHR) {
+          alert(data);
+        }
+      }                  
+    });
   });
 });

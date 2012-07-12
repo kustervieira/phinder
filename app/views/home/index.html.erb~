@@ -1,23 +1,13 @@
 <script type="text/javascript">
-    function Friends(form) {
-        var gender
-        if (document.getElementById('male').checked) {
-            gender = document.getElementById('male').value
-        } else if (document.getElementById('female').checked) {
-            gender = document.getElementById('female').value
-        }
-        alert(gender);            
-        }
-$("#button").click(function() { 
-               //alert("Handler for .click() called."); 		
-               var accessToken;
-                 FB.getLoginStatus(function(response) { 	 	
-                        accessToken = response.authResponse.accessToken; 	 	
-                 });                        	
-                    alert(accessToken);
-
-                $.ajax({	
-                   url: 'https://graph.facebook.com/fql?q=SELECT uid FROM user WHERE sex='+gender+' AND uid IN (SELECT uid2 FROM friend WHERE uid1 = me())&access_token=' + accessToken,
+$("#button").click(function() {
+                //alert("Handler for .click() called.");
+                var accessToken;
+                FB.getLoginStatus(function(response) {
+                        accessToken = response.authResponse.accessToken;
+                     });                        
+                     alert(accessToken);
+                $.ajax({
+                   url: 'https://graph.facebook.com/fql?q=SELECT uid FROM user WHERE sex="male" AND uid IN (SELECT uid2 FROM friend WHERE uid1 = me())&access_token=' + accessToken,
                    async: true,
                    type: "GET",
                    dataType: "jsonp",
@@ -26,31 +16,25 @@ $("#button").click(function() {
                    },
                    complete: function(jqXHR, textStatus){
                    },
-	
-                   statusCode: {
+                    statusCode: {
                         200: function(data, textStatus, jqXHR) {
                             alert(data);
-                      }
-                     }                  
+                        }
+                      }                  
                 });
             });           
         });
-</script>		
+</script> 
+<h1>Welcome to Phinder Web Application!</h1>
 
-    <h1>
-        Welcome to Phinder Web Application!   
-    </h1>
-
-<h2>If you wish discover who is person in a photo?</h2>
+<h2>If you wish discover who is person at photo?</h2>
 
 <form id="gender_photo_form" action="" enctype="multipart/form-data">
     <h3>Just select gender of person and upload file(s) to the app.</h3> <br />
-    <input id="male" type="radio" name="gender" value="Male" /> Male <br />
-    <input id="female" type="radio" name="gender" value="Female" /> Female <br /><br />
+    <input id="male" type="radio" name="gender" value="male" /> Male <br />
+    <input id="female" type="radio" name="gender" value="female" /> Female <br /><br />
     <input type="file" id="upload_photos" name="uphotos"/> <br /><br />
-    <div>Here image update</div>
-    <input type="button" name="SubmitButton" value="Submit" onClick = "Friends(this.form)" /><br />
+    <input type="button" name="SubmitButton" value="Submit" onClick ="" /><br />
 </form>
-
-
+<a href="#" id="button" >FQL</a>
 <h2>This app will at your friends list search whose person is more similar with person at picture.</h2>

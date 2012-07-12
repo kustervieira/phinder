@@ -11,42 +11,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20120627183319) do
 
-  create_table "finders", :force => true do |t|
-    t.string   "gender"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.datetime "photo_updated_at"
-=======
 ActiveRecord::Schema.define(:version => 20120530121243) do
 
-  create_table "finders", :force => true do |t|
-    t.string   "gender"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
->>>>>>> d9123e31efe4f5130a56653357f81a2d6c9c2b32
-  end
-
-  create_table "people", :force => true do |t|
-    t.string   "gender"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
-  end
-
-<<<<<<< HEAD
   create_table "users", :force => true do |t|
     t.string   "provider"
     t.string   "uid"
@@ -57,6 +24,4 @@ ActiveRecord::Schema.define(:version => 20120530121243) do
     t.datetime "updated_at",       :null => false
   end
 
-=======
->>>>>>> d9123e31efe4f5130a56653357f81a2d6c9c2b32
 end
