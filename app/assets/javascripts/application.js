@@ -70,6 +70,52 @@ jQuery(function($) {
 	      }                  
 	    });
    });                        
+ //aqui vou chamar o face detect enviando a foto ou url
+ console.log('INICIOU O FACE CODE');
+var data = canvas.toDataURL('image/jpeg', 1.0);
+newblob = dataURItoBlob(data);
+var formdata = new FormData();
+formdata.append("635d01087f121344f80857f479853d05", faceKey);
+formdata.append("33ea94ef35a1571e910d738b79c1cec4", faceSecret);
+formdata.append("filename","temp.jpg");
+formdata.append("file",newblob);
+$.ajax({
+                 url: 'http://api.face.com/faces/detect.json',
+                 data: formdata,
+                 cache: false,
+                 contentType: false,
+                 processData: false,
+                 dataType:"json",
+                 type: 'POST',
+                 success: function (data) {
+                     handleResult(data.photos[0]);
+                 }
+ });
+//credit http://stackoverflow.com/a/8782422/52160
+
+function dataURItoBlob(dataURI, callback) {
+        // convert base64 to raw binary data held in a string
+        // doesn't handle URLEncoded DataURIs
+        var byteString;
+        if (dataURI.split(",")[0].indexOf("base64") >= 0) {
+            byteString = atob(dataURI.split(",")[1]);
+        } else {
+            byteString = unescape(dataURI.split(",")[1]);
+        }
+        // separate out the mime component
+        var mimeString = dataURI.split(",")[0].split(":")[1].split(";")[0];
+        // write the bytes of the string to an ArrayBuffer
+        var ab = new ArrayBuffer(byteString.length);
+        var ia = new Uint8Array(ab);
+        for (var i = 0; i < byteString.length; i++) {
+            ia[i] = byteString.charCodeAt(i);
+        }
+        // write the ArrayBuffer to a blob, and you're done
+        var BlobBuilder = window.WebKitBlobBuilder || window.MozBlobBuilder;
+        var bb = new BlobBuilder();
+        bb.append(ab);
+        return bb.getBlob(mimeString);
+}
  
   });
 });
