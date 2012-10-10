@@ -1,17 +1,22 @@
+	
+	<h1>Welcome to Phinder Web Application!</h1>
+	
+	<h2>If you wish discover who is person at photo?</h2>
+	
+	<form id="form" action="" enctype="multipart/form-data">
+	    <fieldset >
+		    <h3>Just select gender of person: </h3> <br />
+		    <input id="male" name="gender" type="radio" value="male" checked="true"  /> Male <br />
+		    <input id="female" name="gender" type="radio" value="female" /> Female 
+		    <h3> And upload file(s) or paste url of the image to the app.</h3> <br />
+		    <input type="file" id="file" style="display: none;"/> <br /><br />
+		    URL <input type="text" id="url"/>
+		    <input type="button" id= "bSubmit" value="Submit"/><br />
+	    </fieldset>    
+	</form>
+	<h2>This app will at your friends list search whose person is more similar with person at picture.</h2>
 
-<h1>Welcome to Phinder Web Application!</h1>
-
-<h2>If you wish discover who is person at photo?</h2>
-
-<form id="form" action="" enctype="multipart/form-data">
-    <fieldset>
-    <h3>Just select gender of person: </h3> <br />
-    <input id="male" name="gender" type="radio" value="male" checked="true"  /> Male <br />
-    <input id="female" name="gender" type="radio" value="female" /> Female 
-    <h3> And upload file(s) or paste url of the image to the app.</h3> <br />
-    <input type="file" id="file" /> <br /><br />
-    URL <input type="text" id="url" />
-    <input type="button" id= "bSubmit" value="Submit"/><br />
-    </fieldset>    
-</form>
-<h2>This app will at your friends list search whose person is more similar with person at picture.</h2>
+	<div id="main-image-wrapper">
+  		<img id="image" name="image" src="" style="position: relative; width: 700px; height: auto; text-align: center;">
+	</div>
+	

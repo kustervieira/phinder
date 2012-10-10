@@ -2,7 +2,7 @@ Phinder::Application.routes.draw do
 #  get "home/index"
 resources :phinder
 root to: 'home#index'
-
+match 'callback', to: proc{|env| [200, {"Content-Type" => "text/html"}, [""]]}
 match 'auth/:provider/callback', to: 'sessions#create'
 match 'auth/failure', to: redirect('/')
 match 'signout', to: 'sessions#destroy', as: 'signout'
